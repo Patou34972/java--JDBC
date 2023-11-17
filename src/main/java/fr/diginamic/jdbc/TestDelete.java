@@ -29,7 +29,7 @@ public class TestDelete {
             // Création de l'objet Statement
             statement = connection.createStatement();
 
-            // Exemple d'insertion de données dans la table fournisseur
+            // Exemple delete de données dans la table fournisseur
             String insertionQuery = "DELETE FROM FOURNISSEUR WHERE id = 4";
             statement.executeUpdate(insertionQuery);
 

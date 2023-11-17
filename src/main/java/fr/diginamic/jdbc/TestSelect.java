@@ -2,17 +2,18 @@ package fr.diginamic.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class TestSelect {
+
     private static final String DB_URL;
     private static final String DB_USER;
     private static final String DB_PWD;
 
     static {
-        System.out.println("bloc static");
         ResourceBundle bundle = ResourceBundle.getBundle("db");
         DB_URL = bundle.getString("db.url");
         DB_USER = bundle.getString("db.user");
@@ -22,30 +23,39 @@ public class TestSelect {
     public static void main(String[] args) {
         Connection connection = null;
         Statement statement = null;
+        ResultSet resultSet = null;
 
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PWD);
-
-            // Création de l'objet Statement
             statement = connection.createStatement();
 
-            // Exemple d'insertion de données dans la table fournisseur
-            String insertionQuery = "SELECT nom FROM FOURNISSEUR";
-            statement.executeQuery(insertionQuery);
+            // Exemple de select de données dans la table fournisseur
+            String selectQuery = "SELECT nom FROM FOURNISSEUR";
+            resultSet = statement.executeQuery(selectQuery);
+
+            // Afficher les résultats
+            while (resultSet.next()) {
+                String nom = resultSet.getString("nom");
+                System.out.println("Nom : " + nom);
+            }
 
             System.out.println("Select réussie.");
 
-            connection.close();
         } catch (SQLException e) {
             System.out.println("Attention : " + e.getMessage());
         } finally {
             try {
-                // Fermeture du statement dans le bloc finally pour s'assurer que cela se fait même en cas d'exception
+                if (resultSet != null) {
+                    resultSet.close();
+                }
                 if (statement != null) {
                     statement.close();
                 }
+                if (connection != null) {
+                    connection.close();
+                }
             } catch (SQLException e) {
-                System.out.println("Erreur lors de la fermeture du statement : " + e.getMessage());
+                System.out.println("Erreur lors de la fermeture : " + e.getMessage());
             }
 
             System.out.println("Fin du programme....");

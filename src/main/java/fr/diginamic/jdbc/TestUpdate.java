@@ -30,7 +30,7 @@ public class TestUpdate {
             // Création de l'objet Statement
             statement = connection.createStatement();
 
-            // Exemple d'insertion de données dans la table fournisseur
+            // Exemple d'update de données dans la table fournisseur
             String insertionQuery = "UPDATE FOURNISSEUR SET nom = 'Fabrice' WHERE id = 4";
             statement.executeUpdate(insertionQuery);
 
