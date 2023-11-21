@@ -11,7 +11,6 @@ public class TestConnexionJdbc {
     private static final String DB_USER;
     private static final String DB_PWD;
 
-
     static {
         System.out.println("bloc static");
         ResourceBundle bundle = ResourceBundle.getBundle("db");
