@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+// la classe TestConnexion pour la connexion base de donnée
 public class TestConnexionJdbc {
 
     private static final String DB_URL;

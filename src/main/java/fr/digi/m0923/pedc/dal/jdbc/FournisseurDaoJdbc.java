@@ -79,7 +79,7 @@ public class FournisseurDaoJdbc implements FournissseurDAO{
             pst.setString(1,nom);
 
             int nb = pst.executeUpdate();
-            System.out.println("Nombre d'élèments modifiés : " + nb);
+            System.out.println("Nombre d'élèments supprimés : " + nb);
             return nb > 0;
         }
     }
